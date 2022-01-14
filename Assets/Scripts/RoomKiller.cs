@@ -25,6 +25,13 @@ public class RoomKiller : MonoBehaviour
 
     void OnTriggerExit (Collider other)
     {
+        StartCoroutine("DestroyRoom");
+        
+    }
+
+    IEnumerator DestroyRoom ()
+    {
+        yield return new WaitForSeconds(3);
         Destroy(gameObject);
     }
 }
