@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMoverScript : MonoBehaviour
 {
     public float speed = 1f;
-    private bool canMove = true;
+    public bool canMove = true;
     public GameObject cameraO;
     private Vector3 goalPos;
     private Vector3 goalPosAdder;
