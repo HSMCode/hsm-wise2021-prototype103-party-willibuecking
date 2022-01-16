@@ -28,28 +28,19 @@ public class PlayerMoverScript : MonoBehaviour
             transform.Rotate(0.0f, 90.0f*Time.deltaTime*speed, 0.0f, Space.Self);
         }
 
-        if((r > -3 && r < 3) | (r > 87 && r < 93) | (r > 177 && r < 183) | (r > 267 && r < 273))
-        {
-            canPress = true;
-        }
-        else
-        {
-            canPress = false;
-        }
-
-        if(r > -3 && r < 3)
+        if(r > -10 && r < 10)
         {
             goalPosAdder = new Vector3(-10.0f, 0f, 0.0f);
         }
-        if(r > 87 && r < 93)
+        if(r > 80 && r < 100)
         {
             goalPosAdder = new Vector3(0.0f, 0f, 10.0f);
         }
-        if(r > 177 && r < 183)
+        if(r > 170 && r > -170)
         {
             goalPosAdder = new Vector3(10.0f, 0f, 0f);
         }
-        if(r > 267 && r < 273)
+        if(r > -80 && r > -100)
         {
             goalPosAdder = new Vector3(0.0f, 0f, -10.0f);
         }
@@ -90,6 +81,22 @@ public class PlayerMoverScript : MonoBehaviour
             
         }
 
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "LightSwitch")
+        {
+            canPress = true;
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if(other.tag == "LightSwitch")
+        {
+            canPress = false;
+        }
     }
 
 }

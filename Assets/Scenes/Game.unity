@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: f2fd19b655c5bae42a98f37a50a1df72, type: 2}
+  m_LightingDataAsset: {fileID: 112000000, guid: b0b48b268cf104449b653b431ae6df10, type: 2}
   m_LightingSettings: {fileID: 4890085278179872738, guid: 516369b16ec058f40b0b325fd96a5a3b, type: 2}
 --- !u!196 &4
 NavMeshSettings:
@@ -162,14 +162,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 170402326}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0.656059, z: 0, w: 0.75470966}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1554271661}
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 82, z: 0}
 --- !u!1001 &209590751
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -490,8 +490,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1554271661}
-  - component: {fileID: 1554271664}
   - component: {fileID: 1554271663}
+  - component: {fileID: 1554271662}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -515,6 +515,20 @@ Transform:
   m_Father: {fileID: 170402328}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &1554271662
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1554271660}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1.99
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &1554271663
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -531,19 +545,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &1554271664
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1554271660}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1612492083
 PrefabInstance:
   m_ObjectHideFlags: 0
