@@ -2,15 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RoomMaintainer : MonoBehaviour
+public class RoomMusicController : MonoBehaviour
 {
-    public List<GameObject> partyRooms;
-    public GameObject musicRoom;
-    public GameObject emptyRoom;
-
-    public List<GameObject> ambienceTracks;
-    public List<GameObject> technoTracks;
-
     // Start is called before the first frame update
     void Start()
     {
