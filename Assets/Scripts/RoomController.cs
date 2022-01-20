@@ -5,7 +5,7 @@ using UnityEngine;
 public class RoomController : MonoBehaviour
 {
 
-    public float entranceID;
+    public float entranceID = 0;
     public bool entranceSet = false;
 
     private bool thisRoomEntered = false;
@@ -13,26 +13,54 @@ public class RoomController : MonoBehaviour
     private GameObject playerMover;
     private PlayerMoverScript playerMoverScript;
 
+    private GameObject sceneMaster;
+    private RoomMaintainer roomMaintainerScript;
+
+    private List<Vector3> roomOffset = new List<Vector3>();
+    private bool buildFlag = false;
+    private Vector3 tempGO;
+
+    private List<GameObject> buildingRooms = new List<GameObject>();
+
     private Vector3 pMP;
     private Vector3 rP;
+
+    public bool isStartRoom;
 
     // Start is called before the first frame update
     void Start()
     {
         playerMover = GameObject.Find("PlayerMover");
         playerMoverScript = playerMover.GetComponent<PlayerMoverScript>();
-
         rP = transform.position;
+
+        sceneMaster = GameObject.Find("SceneMaster");
+        roomMaintainerScript = sceneMaster.GetComponent<RoomMaintainer>();
+
+        //-----------------------------------------------------------------------------------------------------------------------------------------------
+        //this section takes care of roombuilding
+        roomOffset.Add(new Vector3(-10f, 0f, 0f));
+        roomOffset.Add(new Vector3(0f, 0f, 10f));
+        roomOffset.Add(new Vector3(10f, 0f, 0f));
+        roomOffset.Add(new Vector3(0f, 0f, -10f));
+        //-----------------------------------------------------------------------------------------------------------------------------------------------
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        //-----------------------------------------------------------------------------------------------------------------------------------------------
+        //this section takes care of roomdestruction
         pMP = playerMover.transform.position;
-        if(!(thisRoomEntered || ((pMP.x == rP.x)&&(pMP.z >= rP.z-10 && pMP.z <= rP.z+10)) || ((pMP.z == rP.z)&&(pMP.x >= rP.x-10 && pMP.x <= rP.x+10))) )
+        if(!(((pMP.x == rP.x)&&(pMP.z >= rP.z-10 && pMP.z <= rP.z+10)) || ((pMP.z == rP.z)&&(pMP.x >= rP.x-10 && pMP.x <= rP.x+10))) )
         {
-         DestroyRoomInit();   
+            if(!playerMoverScript.isChangingRooms)
+            {
+                DestroyRoomInit();
+            }   
         }
+        //-----------------------------------------------------------------------------------------------------------------------------------------------
     }
 
     void OnTriggerEnter(Collider other)
@@ -41,6 +69,44 @@ public class RoomController : MonoBehaviour
         {
             thisRoomEntered = true;
         }
+
+        if(other.tag == "Player" && !buildFlag)
+        {
+            Invoke("BuildRooms", 0f);
+            buildFlag = true;
+
+            buildingRooms.Add(roomMaintainerScript.partyRooms[Random.Range(0, roomMaintainerScript.partyRooms.Count)]);
+            buildingRooms.Add(roomMaintainerScript.musicRoomsA[Random.Range(0, roomMaintainerScript.musicRoomsA.Count)]);
+            buildingRooms.Add(roomMaintainerScript.musicRoomsT[Random.Range(0, roomMaintainerScript.musicRoomsT.Count)]);
+
+            if(isStartRoom)
+            {
+                buildingRooms.Add(roomMaintainerScript.partyRooms[0]);
+                buildingRooms.Add(roomMaintainerScript.partyRooms[1]);
+                buildingRooms.Add(roomMaintainerScript.musicRoomsA[Random.Range(0, roomMaintainerScript.musicRoomsA.Count)]);
+                buildingRooms.Add(roomMaintainerScript.musicRoomsT[Random.Range(0, roomMaintainerScript.musicRoomsT.Count)]);
+            }
+            else
+            {
+                roomOffset.RemoveAt((int) entranceID);
+            }
+        }
+    }
+
+    void BuildRooms()
+    {
+        for (int i = 0; i < roomOffset.Count; i++) 
+            {
+                int rnd = Random.Range(0, roomOffset.Count);
+                tempGO = roomOffset[rnd];
+                roomOffset[rnd] = roomOffset[i];
+                roomOffset[i] = tempGO;
+            }
+
+            for(int i = 0; i < roomOffset.Count; i++)
+            {
+                Instantiate(buildingRooms[i], transform.position + roomOffset[i], transform.rotation);
+            }
     }
 
     void DestroyRoomInit()
@@ -50,7 +116,7 @@ public class RoomController : MonoBehaviour
 
     IEnumerator DestroyRoom()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(0);
         Destroy(gameObject);
     }
 }

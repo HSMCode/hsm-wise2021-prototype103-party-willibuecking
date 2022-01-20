@@ -30,6 +30,8 @@ public class PlayerMoverScript : MonoBehaviour
 
     private Vector3 interpolatedPosition;
 
+    public bool isChangingRooms;
+
     // Start is called before the Yfirst frame update
     void Start()
     {
@@ -60,6 +62,7 @@ public class PlayerMoverScript : MonoBehaviour
         if(!Input.GetKey(KeyCode.Space) && canMove)
         {
             transform.Rotate(0.0f, 90.0f*Time.deltaTime*speed, 0.0f, Space.Self);
+            isChangingRooms = false;
         }
 
         if(Input.GetKeyDown(KeyCode.Space) && lightTriggerOn)
@@ -125,6 +128,7 @@ public class PlayerMoverScript : MonoBehaviour
 
     void GoToNextRoom()
     {
+        isChangingRooms = true;
         interpolatedPosition = Vector3.Lerp(initialPos, targetPos, tNextRoom);
         tNextRoom += 0.005f;
         cameraO.transform.position = transform.position;
