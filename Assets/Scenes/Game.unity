@@ -157,6 +157,7 @@ MonoBehaviour:
   cameraO: {fileID: 1244870686}
   goalAngle: 0
   lightTriggerOn: 0
+  isChangingRooms: 0
 --- !u!4 &170402328
 Transform:
   m_ObjectHideFlags: 0
@@ -544,18 +545,7 @@ MonoBehaviour:
   partyRooms:
   - {fileID: 9058667955293370134, guid: 86cba62285f7d474680e527ed1ea9bee, type: 3}
   - {fileID: 6901429930457780268, guid: ba9c90713e7fd244693a4a6da2c36653, type: 3}
-  musicRoomsA:
-  - {fileID: 8389643301140464918, guid: 53f5418b78fc89a4b9185b99094d851d, type: 3}
-  - {fileID: 2838248348067482136, guid: 08175dd9595933046b0c8ec472437cc2, type: 3}
-  - {fileID: 612632514532416016, guid: bcb49ad541d21224f8dee0e4df5c1da6, type: 3}
-  - {fileID: 8078796051838785461, guid: 0fe8c7a7113fc904d988d725bb9aaaf3, type: 3}
-  - {fileID: 4799632949792412451, guid: 14b600b191d8d9448bd23ab596dce2f8, type: 3}
-  musicRoomsT:
-  - {fileID: 979521247032231833, guid: f8816dd2107d9e747a33cdf92690c8a4, type: 3}
-  - {fileID: 6389255278582427598, guid: 568aa9a7d3722ec42997175e65fd3d13, type: 3}
-  - {fileID: 1565475948933617801, guid: 5b394b3a8696e874fa435afe0f9bd768, type: 3}
-  - {fileID: 3746410194078093623, guid: e6f46f1d9113b0f4295a2a927dc3f223, type: 3}
-  - {fileID: 5294701489864414095, guid: d18e1cd67ec402e4f9dce51502ee3766, type: 3}
+  musicRoom: {fileID: 4025157737290202761, guid: bcadd327c38c02141992d92a2e929e45, type: 3}
   emptyRoom: {fileID: 7233251217161542433, guid: 5f610c7339d9ce64a8a842fc49a9ae6d, type: 3}
 --- !u!114 &1528737174
 MonoBehaviour:

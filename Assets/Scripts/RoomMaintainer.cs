@@ -5,8 +5,7 @@ using UnityEngine;
 public class RoomMaintainer : MonoBehaviour
 {
     public List<GameObject> partyRooms;
-    public List<GameObject> musicRoomsA;
-    public List<GameObject> musicRoomsT;
+    public GameObject musicRoom;
     public GameObject emptyRoom;
 
     // Start is called before the first frame update

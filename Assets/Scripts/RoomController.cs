@@ -72,24 +72,42 @@ public class RoomController : MonoBehaviour
 
         if(other.tag == "Player" && !buildFlag)
         {
-            Invoke("BuildRooms", 0f);
-            buildFlag = true;
-
             buildingRooms.Add(roomMaintainerScript.partyRooms[Random.Range(0, roomMaintainerScript.partyRooms.Count)]);
-            buildingRooms.Add(roomMaintainerScript.musicRoomsA[Random.Range(0, roomMaintainerScript.musicRoomsA.Count)]);
-            buildingRooms.Add(roomMaintainerScript.musicRoomsT[Random.Range(0, roomMaintainerScript.musicRoomsT.Count)]);
+            buildingRooms.Add(roomMaintainerScript.musicRoom);
+            buildingRooms.Add(roomMaintainerScript.musicRoom);
 
             if(isStartRoom)
             {
                 buildingRooms.Add(roomMaintainerScript.partyRooms[0]);
                 buildingRooms.Add(roomMaintainerScript.partyRooms[1]);
-                buildingRooms.Add(roomMaintainerScript.musicRoomsA[Random.Range(0, roomMaintainerScript.musicRoomsA.Count)]);
-                buildingRooms.Add(roomMaintainerScript.musicRoomsT[Random.Range(0, roomMaintainerScript.musicRoomsT.Count)]);
+                buildingRooms.Add(roomMaintainerScript.musicRoom);
+                buildingRooms.Add(roomMaintainerScript.musicRoom);
             }
             else
             {
                 roomOffset.RemoveAt((int) entranceID);
             }
+
+            Invoke("BuildRooms", 0f);
+            buildFlag = true;
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if(other.tag == "Player")
+        {
+            buildFlag = false;
+
+            roomOffset.Clear();
+
+            roomOffset.Add(new Vector3(-10f, 0f, 0f));
+            roomOffset.Add(new Vector3(0f, 0f, 10f));
+            roomOffset.Add(new Vector3(10f, 0f, 0f));
+            roomOffset.Add(new Vector3(0f, 0f, -10f));
+
+            entranceSet = false;
+
         }
     }
 
