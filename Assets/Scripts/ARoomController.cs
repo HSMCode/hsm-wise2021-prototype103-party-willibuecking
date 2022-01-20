@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class ARoomController : MonoBehaviour
 {
+    private GameObject sceneMaster;
+    private RoomMaintainer roomMaintainerScript;
+
     public Light strobe;
     public Light redLight;
     private bool strobeActive;
@@ -13,6 +16,9 @@ public class ARoomController : MonoBehaviour
     {
         InvokeRepeating("StrobeInit", 2f, 5f);
         strobe.enabled = false;
+
+        sceneMaster = GameObject.Find("SceneMaster");
+        roomMaintainerScript = sceneMaster.GetComponent<RoomMaintainer>();
     }
 
     // Update is called once per frame
@@ -39,6 +45,18 @@ public class ARoomController : MonoBehaviour
         else
         {
             strobe.enabled = false;
+        }
+    }
+    void OnTriggerEnter (Collider other)
+    {
+        if(other.tag == "AudioTrack")
+        {
+            roomMaintainerScript.score += other.gameObject.GetComponent<MusicMover>().pointsA;
+            roomMaintainerScript.score -= other.gameObject.GetComponent<MusicMover>().pointsT;
+        }
+        if(other.tag == "Player")
+        {
+            roomMaintainerScript.finished = true;
         }
     }
 }

@@ -26,6 +26,7 @@ public class RoomController : MonoBehaviour
     private Vector3 rP;
 
     public bool isStartRoom;
+    public bool isFinishRoom;
 
     // Start is called before the first frame update
     void Start()
@@ -59,6 +60,11 @@ public class RoomController : MonoBehaviour
             {
                 DestroyRoomInit();
             }   
+        }
+
+        if(roomMaintainerScript.finished && !isFinishRoom)
+        {
+            DestroyRoomInit();
         }
         //-----------------------------------------------------------------------------------------------------------------------------------------------
     }
@@ -130,11 +136,12 @@ public class RoomController : MonoBehaviour
     void DestroyRoomInit()
     {
         StartCoroutine("DestroyRoom");
+        transform.Translate(Vector3.down * Time.deltaTime*20, Space.World);
     }
 
     IEnumerator DestroyRoom()
     {
-        yield return new WaitForSeconds(0);
+        yield return new WaitForSeconds(0.5f);
         Destroy(gameObject);
     }
 }

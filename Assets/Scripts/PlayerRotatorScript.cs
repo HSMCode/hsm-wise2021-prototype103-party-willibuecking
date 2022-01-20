@@ -5,13 +5,14 @@ using UnityEngine;
 public class PlayerRotatorScript : MonoBehaviour
 {
     private GameObject playerMover;
+    private PlayerMoverScript playerMoverScript;
     private bool canRotate;
     private float speed;
     // Start is called before the first frame update
     void Start()
     {
         GameObject playerMover = GameObject.Find("PlayerMover");
-        PlayerMoverScript playerMoverScript = playerMover.GetComponent<PlayerMoverScript>();
+        playerMoverScript = playerMover.GetComponent<PlayerMoverScript>();
         canRotate = playerMoverScript.canMove;
         speed = playerMoverScript.speed;
     }

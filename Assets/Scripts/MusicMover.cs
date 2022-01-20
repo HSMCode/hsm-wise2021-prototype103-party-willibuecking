@@ -17,7 +17,8 @@ public class MusicMover : MonoBehaviour
     AudioSource thisSource;
     private float initVol;
 
-    public int score;
+    public int pointsA;
+    public int pointsT;
 
     // Start is called before the first frame update
     void Start()
@@ -55,6 +56,10 @@ public class MusicMover : MonoBehaviour
             isCollected = true;
             transform.parent = player.transform;
             firstEnter = false;
+        }
+        if(other.tag == "FinishRoom")
+        {
+            transform.parent = other.gameObject.transform;
         }
     }
 

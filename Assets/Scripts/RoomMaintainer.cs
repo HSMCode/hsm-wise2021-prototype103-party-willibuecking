@@ -15,6 +15,10 @@ public class RoomMaintainer : MonoBehaviour
     public bool aListEmpty;
     public bool tListEmpty;
 
+    public bool finished = false;
+
+    public int score;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,5 +47,7 @@ public class RoomMaintainer : MonoBehaviour
         {
             tListEmpty = true;
         }
+
+        Debug.Log(score);
     }
 }

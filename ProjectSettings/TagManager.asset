@@ -8,6 +8,8 @@ TagManager:
   - Room
   - LightSwitch
   - MusicSwitcher
+  - AudioTrack
+  - FinishRoom
   layers:
   - Default
   - TransparentFX
