@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RoomKiller : MonoBehaviour
 {
-    public GameObject player;
+    private GameObject player;
     private float dist;
     // Start is called before the first frame update
     void Start()

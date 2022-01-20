@@ -6,6 +6,7 @@ TagManager:
   tags:
   - CameraMover
   - Room
+  - LightSwitch
   layers:
   - Default
   - TransparentFX

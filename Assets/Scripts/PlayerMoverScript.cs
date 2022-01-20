@@ -5,13 +5,25 @@ using UnityEngine;
 public class PlayerMoverScript : MonoBehaviour
 {
     public float speed = 1f;
-    private bool canMove = true;
+
+    public bool canMove = true;
+
     public GameObject cameraO;
-    private Vector3 goalPos;
-    private Vector3 goalPosAdder;
-    private float r;
-    private bool canPress = false;
-    private float distanceChecker = 0;
+
+    private Vector3 targetPos;
+    private Vector3 targetPosOffset;
+    private Vector3 initialPos;
+
+    private float tNextRoom;
+    private float tRotator;
+
+    private Quaternion targetRotation;
+    private Quaternion initialRotation;
+    private bool rotationFinished = false;
+    
+    public float goalAngle;
+    private float targetAngle;
+    public bool lightTriggerOn = false;
 
     // Start is called before the first frame update
     void Start()
@@ -22,76 +34,87 @@ public class PlayerMoverScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
-        r = transform.localEulerAngles.y;
+        if(goalAngle == 0)
+        {
+            targetPosOffset = new Vector3(-10f, 0f, 0f);
+        }
+        else if(goalAngle == 90)
+        {
+            targetPosOffset = new Vector3(0f, 0f, 10f);
+        }
+        else if(goalAngle == 180)
+        {
+            targetPosOffset = new Vector3(10f, 0f, 0f);
+        }
+        else if(goalAngle == 270)
+        {
+            targetPosOffset = new Vector3(0f, 0f, -10f);
+        }
+
         if(!Input.GetKey(KeyCode.Space) && canMove)
         {
             transform.Rotate(0.0f, 90.0f*Time.deltaTime*speed, 0.0f, Space.Self);
         }
 
-        if((r > -3 && r < 3) | (r > 87 && r < 93) | (r > 177 && r < 183) | (r > 267 && r < 273))
+        if(Input.GetKeyDown(KeyCode.Space) && lightTriggerOn)
         {
-            canPress = true;
-        }
-        else
-        {
-            canPress = false;
-        }
-
-        if(r > -3 && r < 3)
-        {
-            goalPosAdder = new Vector3(-10.0f, 0f, 0.0f);
-        }
-        if(r > 87 && r < 93)
-        {
-            goalPosAdder = new Vector3(0.0f, 0f, 10.0f);
-        }
-        if(r > 177 && r < 183)
-        {
-            goalPosAdder = new Vector3(10.0f, 0f, 0f);
-        }
-        if(r > 267 && r < 273)
-        {
-            goalPosAdder = new Vector3(0.0f, 0f, -10.0f);
-        }
-
-        if(Input.GetKeyDown(KeyCode.Space) && canPress)
-        {
-
             //Debug.Log("1");
-            //Debug.Log(transform.position);
+            targetAngle = goalAngle;
+            targetRotation = Quaternion.Euler(transform.localEulerAngles.x, goalAngle, transform.localEulerAngles.z);
+            initialRotation = transform.rotation;
+            tRotator = 0f;
+            Debug.Log(targetRotation);
+            Debug.Log(initialRotation);
+            targetPos = transform.position + targetPosOffset;
+            Debug.Log(targetPos);
+            initialPos = transform.position;
+            Debug.Log(initialPos);
             canMove = false;
-            distanceChecker = 0;
-            goalPos = transform.position + goalPosAdder;
-            //Debug.Log(goalPos);
+            tNextRoom = 0f;
+            //Debug.Log("2");
         }
+        /* if (transform.rotation == targetRotation)
+        {
+            rotationFinished = true;
+            //Debug.Log("3");
+        } */
+
+        if (transform.position == targetPos)
+        {
+            canMove = true;
+            rotationFinished = false;
+            //Debug.Log("4");
+        }
+
         if(!canMove)
         {
-            //Debug.Log("2");
+            //Debug.Log("5");
+            FinishRotation();
+        }
+        
+         if(!canMove && rotationFinished)
+        {
+            //Debug.Log("6");
             GoToNextRoom();
         }
     }
 
+
+    /* void FinishRotation()
+    {
+        transform.rotation = Quaternion.Lerp(initialRotation, targetRotation, tRotator);
+        tRotator += 0.05f;
+        //Debug.Log("7");
+
+    } */
+
     void GoToNextRoom()
-    {   
-        if(distanceChecker < 10)
-        {   
-            //Debug.Log("3");
-            transform.Translate(Vector3.left* Time.deltaTime * speed*4, Space.Self);
-            cameraO.transform.position = transform.position;
-            distanceChecker += 1*Time.deltaTime*speed*4;
-        }
-        else if(distanceChecker >= 10)
-        {
-            //Debug.Log("4");
-            //Debug.Log(transform.position);
-            canMove = true;
-            transform.position = goalPos;
-            //Debug.Log(transform.position);
-            
-        }
-
+    {
+        transform.position = Vector3.Lerp(initialPos, targetPos, tNextRoom);
+        tNextRoom += 0.005f;
+        cameraO.transform.position = transform.position;
+        //Debug.Log("8");
     }
-
 }
 
 
