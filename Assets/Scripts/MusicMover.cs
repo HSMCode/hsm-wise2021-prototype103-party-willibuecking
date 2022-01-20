@@ -17,6 +17,8 @@ public class MusicMover : MonoBehaviour
     AudioSource thisSource;
     private float initVol;
 
+    public int score;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +37,15 @@ public class MusicMover : MonoBehaviour
             thisSource.volume = initVol - 0.3f;
             thisSource.spatialBlend = 0f;
         }
+
+        if(transform.position.y >10)
+        {
+            thisSource.volume = 0;
+        }
+        else
+        {
+            thisSource.volume = initVol;
+        }
     }
 
     void OnTriggerEnter(Collider other)
@@ -51,7 +62,7 @@ public class MusicMover : MonoBehaviour
     {
         if(other.tag == "MusicSwitcher" && !isCollected)
         {
-            transform.position = new Vector3(0f, 50f, 0f);
+            transform.position = new Vector3(0f, 100f, 0f);
         }
     }
 }

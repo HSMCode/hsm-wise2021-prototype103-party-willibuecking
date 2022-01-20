@@ -352,7 +352,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 245837990}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 80, z: 0}
+  m_LocalPosition: {x: 0, y: 100, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 612641869}
@@ -761,7 +761,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1240797918}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 80, z: 0}
+  m_LocalPosition: {x: 0, y: 100, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 19431862}
@@ -904,7 +904,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   partyRooms:
-  - {fileID: 9058667955293370134, guid: 86cba62285f7d474680e527ed1ea9bee, type: 3}
+  - {fileID: 7528422519530508464, guid: 95984cc6bd4ab854a88eac4b2d420dee, type: 3}
   - {fileID: 4487469164382497971, guid: 190c9154bcbd84346b4e3d9f195b8e43, type: 3}
   musicRoomA: {fileID: 6021944350845659649, guid: b62d172ba226d63408b2316d87a08bc7, type: 3}
   musicRoomT: {fileID: 5672739713810339730, guid: be6f1473fd0cb9d458df2647ff8e26fa, type: 3}
