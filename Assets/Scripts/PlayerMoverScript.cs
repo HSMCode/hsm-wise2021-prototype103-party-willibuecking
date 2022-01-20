@@ -25,7 +25,12 @@ public class PlayerMoverScript : MonoBehaviour
     private float targetAngle;
     public bool lightTriggerOn = false;
 
-    // Start is called before the first frame update
+    private float initialAngleY;
+    private float interpolatedAngleY;
+
+    private Vector3 interpolatedPosition;
+
+    // Start is called before the Yfirst frame update
     void Start()
     {
         
@@ -34,6 +39,7 @@ public class PlayerMoverScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
+
         if(goalAngle == 0)
         {
             targetPosOffset = new Vector3(-10f, 0f, 0f);
@@ -58,47 +64,56 @@ public class PlayerMoverScript : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Space) && lightTriggerOn)
         {
-            //Debug.Log("1");
             targetAngle = goalAngle;
-            targetRotation = Quaternion.Euler(transform.localEulerAngles.x, goalAngle, transform.localEulerAngles.z);
+            initialAngleY = transform.localEulerAngles.y;
+            if(initialAngleY >= 310)
+            {
+                initialAngleY -= 360;
+            }
+
             initialRotation = transform.rotation;
+            targetRotation = Quaternion.Euler(transform.localEulerAngles.x, targetAngle, transform.localEulerAngles.z);
+
             tRotator = 0f;
-            Debug.Log(targetRotation);
-            Debug.Log(initialRotation);
-            targetPos = transform.position + targetPosOffset;
-            Debug.Log(targetPos);
+
             initialPos = transform.position;
-            Debug.Log(initialPos);
-            canMove = false;
+            targetPos = transform.position + targetPosOffset;
+
             tNextRoom = 0f;
-            //Debug.Log("2");
+
+            canMove = false;
         }
-        /* if (transform.rotation == targetRotation)
+        if (transform.rotation == targetRotation)
         {
             rotationFinished = true;
-            //Debug.Log("3");
-        } */
+
+        }
 
         if (transform.position == targetPos)
         {
             canMove = true;
             rotationFinished = false;
-            //Debug.Log("4");
+            transform.position = targetPos;
         }
 
         if(!canMove)
         {
-            //Debug.Log("5");
             FinishRotation();
+            transform.rotation = Quaternion.Euler(transform.localEulerAngles.x, interpolatedAngleY, transform.localEulerAngles.z);
         }
         
          if(!canMove && rotationFinished)
         {
-            //Debug.Log("6");
             GoToNextRoom();
+            transform.position = interpolatedPosition;
         }
     }
 
+    void FinishRotation()
+    {
+        interpolatedAngleY = Mathf.Lerp(initialAngleY, targetAngle, tRotator);
+        tRotator += 0.05f;
+    }
 
     /* void FinishRotation()
     {
@@ -110,10 +125,9 @@ public class PlayerMoverScript : MonoBehaviour
 
     void GoToNextRoom()
     {
-        transform.position = Vector3.Lerp(initialPos, targetPos, tNextRoom);
+        interpolatedPosition = Vector3.Lerp(initialPos, targetPos, tNextRoom);
         tNextRoom += 0.005f;
         cameraO.transform.position = transform.position;
-        //Debug.Log("8");
     }
 }
 

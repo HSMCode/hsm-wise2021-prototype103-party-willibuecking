@@ -8,11 +8,20 @@ public class LightSwitch : MonoBehaviour
     public Light doorLight;
     private GameObject playerMover;
     private PlayerMoverScript playerMoverScript;
+
+    private GameObject parentRoom;
+    private RoomController roomControllerScript;
+
     // Start is called before the first frame update
+    //private bool entranceSet = false;
+
     void Start()
     {
-        GameObject playerMover = GameObject.Find("PlayerMover");
+        playerMover = GameObject.Find("PlayerMover");
         playerMoverScript = playerMover.GetComponent<PlayerMoverScript>();
+
+        parentRoom = transform.parent.gameObject;
+        roomControllerScript = parentRoom.GetComponent<RoomController>();
         
     }
 
@@ -29,7 +38,12 @@ public class LightSwitch : MonoBehaviour
             lightOn = true;
             playerMoverScript.lightTriggerOn = true;
             playerMoverScript.goalAngle = transform.localEulerAngles.y;
-            //Debug.Log(transform.localEulerAngles.y);
+
+            if(!roomControllerScript.entranceSet)
+            {
+                roomControllerScript.entranceID = transform.localEulerAngles.y/90f;
+                roomControllerScript.entranceSet = true;
+            }
         }
     }
 
@@ -40,5 +54,6 @@ public class LightSwitch : MonoBehaviour
             lightOn = false;
             playerMoverScript.lightTriggerOn = false;
         }
+
     }
 }
