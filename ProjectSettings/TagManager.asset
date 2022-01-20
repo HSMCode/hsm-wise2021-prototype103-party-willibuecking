@@ -7,6 +7,7 @@ TagManager:
   - CameraMover
   - Room
   - LightSwitch
+  - MusicSwitcher
   layers:
   - Default
   - TransparentFX
