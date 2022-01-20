@@ -16,16 +16,16 @@ public class RoomMusicController : MonoBehaviour
         sceneMaster = GameObject.Find("SceneMaster");
         roomMaintainerScript = sceneMaster.GetComponent<RoomMaintainer>();
 
-        if(ambient)
+        if(ambient && !roomMaintainerScript.aListEmpty)
         {
             audioTrack = roomMaintainerScript.ambienceTracks[Random.Range(0, roomMaintainerScript.ambienceTracks.Count)];
+            audioTrack.transform.position = transform.position;
         }
-        else
+        else if(!roomMaintainerScript.tListEmpty)
         {
             audioTrack = roomMaintainerScript.technoTracks[Random.Range(0, roomMaintainerScript.technoTracks.Count)];
+            audioTrack.transform.position = transform.position;
         }
-
-        audioTrack.transform.position = transform.position;
     }
 
     // Update is called once per frame

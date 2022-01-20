@@ -61,7 +61,7 @@ public class PlayerMoverScript : MonoBehaviour
 
         if(!Input.GetKey(KeyCode.Space) && canMove)
         {
-            transform.Rotate(0.0f, 90.0f*Time.deltaTime*speed, 0.0f, Space.Self);
+            transform.Rotate(0.0f, 80.0f*Time.deltaTime*speed, 0.0f, Space.Self);
             isChangingRooms = false;
         }
 

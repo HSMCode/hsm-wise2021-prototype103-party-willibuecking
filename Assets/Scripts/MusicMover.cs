@@ -12,14 +12,19 @@ public class MusicMover : MonoBehaviour
     private GameObject sceneMaster;
     private RoomMaintainer roomMaintainerScript;
 
+    private bool firstEnter = true;
+
+    AudioSource thisSource;
+    private float initVol;
+
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("PlayerBody");
         playerPos = GameObject.Find("PlayerBody").transform.position;
-        //playerPos = player.GetComponent<Transform>();
-        sceneMaster = GameObject.Find("SceneMaster");
-        roomMaintainerScript = sceneMaster.GetComponent<RoomMaintainer>();
+        thisSource = GetComponent<AudioSource>();
+        initVol = thisSource.volume;
+
     }
 
     // Update is called once per frame
@@ -27,20 +32,18 @@ public class MusicMover : MonoBehaviour
     {
         if(isCollected)
         {
-            //Debug.Log("collected");
-            //transform.position = playerPos;
-            
+            thisSource.volume = initVol - 0.3f;
+            thisSource.spatialBlend = 0f;
         }
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player")
+        if(other.tag == "Player" && firstEnter)
         {
-            //transform.position = new Vector3(0f, 0f, 0f);
             isCollected = true;
-            //transform.position = player.transform.position;
             transform.parent = player.transform;
+            firstEnter = false;
         }
     }
 

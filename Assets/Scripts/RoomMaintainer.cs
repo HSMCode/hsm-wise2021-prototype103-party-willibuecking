@@ -12,6 +12,9 @@ public class RoomMaintainer : MonoBehaviour
     public List<GameObject> ambienceTracks;
     public List<GameObject> technoTracks;
 
+    public bool aListEmpty;
+    public bool tListEmpty;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +34,14 @@ public class RoomMaintainer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(ambienceTracks.Count == 0)
+        {
+            aListEmpty = true;
+        }
+
+        if(technoTracks.Count == 0)
+        {
+            tListEmpty = true;
+        }
     }
 }

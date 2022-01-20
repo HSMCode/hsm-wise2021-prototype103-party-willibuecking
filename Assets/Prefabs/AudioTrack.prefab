@@ -54,32 +54,32 @@ AudioSource:
   Priority: 128
   DopplerLevel: 0
   MinDistance: 6
-  MaxDistance: 8.5
+  MaxDistance: 9.5
   Pan2D: 0
   rolloffMode: 2
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
+  BypassEffects: 1
+  BypassListenerEffects: 1
+  BypassReverbZones: 1
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0.4673112
+      time: 0.45715648
       value: 1.0074844
-      inSlope: -1.4172332
-      outSlope: -1.4172332
+      inSlope: -0.4270851
+      outSlope: -0.4270851
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.85973465
     - serializedVersion: 3
       time: 1
-      value: 0
-      inSlope: -0.70616305
-      outSlope: -0.70616305
+      value: 0.022445679
+      inSlope: -0.31366268
+      outSlope: -0.31366268
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.43949807
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -152,5 +152,5 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3, y: 3, z: 3}
+  m_Size: {x: 1, y: 3, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
