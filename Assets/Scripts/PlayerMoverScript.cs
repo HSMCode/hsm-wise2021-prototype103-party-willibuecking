@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMoverScript : MonoBehaviour
 {
-    public float speed = 1f;
+    public float speed = 2f;
 
     public bool canMove = true;
 
@@ -116,7 +116,7 @@ public class PlayerMoverScript : MonoBehaviour
     void FinishRotation()
     {
         interpolatedAngleY = Mathf.Lerp(initialAngleY, targetAngle, tRotator);
-        tRotator += 0.05f;
+        tRotator += 0.2f;
     }
 
     /* void FinishRotation()
@@ -131,7 +131,7 @@ public class PlayerMoverScript : MonoBehaviour
     {
         isChangingRooms = true;
         interpolatedPosition = Vector3.Lerp(initialPos, targetPos, tNextRoom);
-        tNextRoom += 0.005f;
+        tNextRoom += 0.02f;
         cameraO.transform.position = transform.position;
     }
 }
