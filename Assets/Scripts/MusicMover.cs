@@ -35,7 +35,7 @@ public class MusicMover : MonoBehaviour
     {
         if(isCollected)
         {
-            thisSource.volume = initVol - 0.3f;
+            thisSource.volume = initVol - 0.4f;
             thisSource.spatialBlend = 0f;
         }
 

@@ -125,6 +125,8 @@ public class RoomController : MonoBehaviour
 
             entranceSet = false;
 
+            roomMaintainerScript.roomCount ++;
+
         }
     }
 

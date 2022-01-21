@@ -29,10 +29,16 @@ public class RoomMaintainer : MonoBehaviour
 
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI gameOverMessage;
+    public TextMeshProUGUI timeText;
+    public TextMeshProUGUI roomsVisited;
+
+    public int roomCount;
 
     private string gameLost;
     private string gameWon;
     private string gameMedium;
+
+    private float timer;
 
     // Start is called before the first frame update
     void Start()
@@ -87,12 +93,18 @@ public class RoomMaintainer : MonoBehaviour
             StartCoroutine("GameOverTimer");
             
         }
+        if(!finished && gameStarted)
+        {
+        timer += Time.deltaTime;
+        }
     }
 
     void GameOver()
     {
         outroPanel.SetActive(true);
-        scoreText.text = "Your Score: " + score.ToString();
+        scoreText.text = "Your Score is " + score.ToString();
+        timeText.text = "It took you " + timer.ToString() + " seconds.";
+        roomsVisited.text = "You visited " + roomCount.ToString() + "rooms.";
         if(score >= 25)
         {
             gameOverMessage.text = gameWon;
