@@ -30,6 +30,7 @@ public class PlayerMoverScript : MonoBehaviour
 
     private Vector3 interpolatedPosition;
 
+
     public bool isChangingRooms;
 
     // Start is called before the Yfirst frame update
