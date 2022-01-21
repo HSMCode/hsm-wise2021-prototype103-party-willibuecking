@@ -78,9 +78,7 @@ public class RoomController : MonoBehaviour
 
         if(other.tag == "Player" && !buildFlag)
         {
-            buildingRooms.Add(roomMaintainerScript.partyRooms[Random.Range(0, roomMaintainerScript.partyRooms.Count)]);
-            buildingRooms.Add(roomMaintainerScript.musicRoomA);
-            buildingRooms.Add(roomMaintainerScript.musicRoomT);
+            
 
             if(isStartRoom)
             {
@@ -92,6 +90,19 @@ public class RoomController : MonoBehaviour
             else
             {
                 roomOffset.RemoveAt((int) entranceID);
+
+                if(roomMaintainerScript.aPartyBuildFlag)
+                {
+                    buildingRooms.Add(roomMaintainerScript.partyRooms[0]);
+                    roomMaintainerScript.aPartyBuildFlag = false;
+                }
+                else
+                {
+                    buildingRooms.Add(roomMaintainerScript.partyRooms[1]);
+                    roomMaintainerScript.aPartyBuildFlag = true;
+                }
+                buildingRooms.Add(roomMaintainerScript.musicRoomA);
+                buildingRooms.Add(roomMaintainerScript.musicRoomT);
             }
 
             Invoke("BuildRooms", 0f);

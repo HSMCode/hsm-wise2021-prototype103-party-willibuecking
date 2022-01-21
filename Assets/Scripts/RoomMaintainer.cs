@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class RoomMaintainer : MonoBehaviour
 {
@@ -8,6 +10,7 @@ public class RoomMaintainer : MonoBehaviour
     public GameObject musicRoomA;
     public GameObject musicRoomT;
     public GameObject emptyRoom;
+    public bool aPartyBuildFlag;
 
     public List<GameObject> ambienceTracks;
     public List<GameObject> technoTracks;
@@ -19,9 +22,29 @@ public class RoomMaintainer : MonoBehaviour
 
     public int score;
 
+    public GameObject introPanel;
+    public GameObject outroPanel;
+
+    private bool gameStarted = false;
+
+    public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI gameOverMessage;
+
+    private string gameLost;
+    private string gameWon;
+    private string gameMedium;
+
     // Start is called before the first frame update
     void Start()
     {
+
+        gameLost = "You came to the wrong party! Good Luck rebuilding your career.";
+        gameWon = "Nice Set!\n I´ll recommend you to my friends, you´ll be drowning in exposure by next week.";
+        gameMedium = "Meh, I´ve heard better but it´s not complete rubbish I guess.";
+
+        introPanel.SetActive(true);
+        outroPanel.SetActive(false);
+
         ambienceTracks.Add(GameObject.Find("A1"));
         ambienceTracks.Add(GameObject.Find("A2"));
         ambienceTracks.Add(GameObject.Find("A3"));
@@ -38,6 +61,17 @@ public class RoomMaintainer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if(!gameStarted)
+        {
+            PreGame();
+        }
+        if(Input.GetKeyDown(KeyCode.S))
+        {
+            gameStarted = true;
+            introPanel.SetActive(false);
+            Time.timeScale = 1f;
+        }
         if(ambienceTracks.Count == 0)
         {
             aListEmpty = true;
@@ -48,6 +82,39 @@ public class RoomMaintainer : MonoBehaviour
             tListEmpty = true;
         }
 
-        Debug.Log(score);
+        if(finished)
+        {
+            StartCoroutine("GameOverTimer");
+            
+        }
+    }
+
+    void GameOver()
+    {
+        outroPanel.SetActive(true);
+        scoreText.text = "Your Score: " + score.ToString();
+        if(score >= 25)
+        {
+            gameOverMessage.text = gameWon;
+        }
+        else if(score >= 5)
+        {
+            gameOverMessage.text = gameMedium;
+        }
+        else if (score < 5)
+        {
+            gameOverMessage.text = gameLost;
+        }
+    }
+
+    void PreGame()
+    {
+        Time.timeScale = 0f;
+    }
+
+    IEnumerator GameOverTimer()
+    {
+        yield return new WaitForSeconds(2);
+        GameOver();
     }
 }

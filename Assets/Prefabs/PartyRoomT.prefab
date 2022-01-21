@@ -93,20 +93,6 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &-2125358677432939023
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4487469164382497971}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33c55f47f01a37542bfa1449f8646602, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lightRotator: {fileID: 6380284943155226142}
-  strobe: {fileID: 2283408836799994109}
 --- !u!1 &6038695737829349521
 GameObject:
   m_ObjectHideFlags: 0
@@ -420,6 +406,20 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &-2125358677432939023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4487469164382497971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33c55f47f01a37542bfa1449f8646602, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightRotator: {fileID: 6380284943155226142}
+  strobe: {fileID: 2283408836799994109}
 --- !u!1 &7739284010209913607
 GameObject:
   m_ObjectHideFlags: 0
@@ -551,7 +551,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8259539073277051848}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 4c43860c2cab99641afcf08490c69c81, type: 3}
@@ -690,6 +690,10 @@ PrefabInstance:
     - target: {fileID: 3245151204128465553, guid: ba9c90713e7fd244693a4a6da2c36653, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4881629492922852084, guid: ba9c90713e7fd244693a4a6da2c36653, type: 3}
+      propertyPath: m_RootOrder
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 5654713773676535619, guid: ba9c90713e7fd244693a4a6da2c36653, type: 3}
       propertyPath: isFinishRoom
