@@ -104,7 +104,7 @@ public class RoomMaintainer : MonoBehaviour
         outroPanel.SetActive(true);
         scoreText.text = "Your Score is " + score.ToString();
         timeText.text = "It took you " + timer.ToString() + " seconds.";
-        roomsVisited.text = "You visited " + roomCount.ToString() + "rooms.";
+        roomsVisited.text = "You visited " + roomCount.ToString() + " rooms.";
         if(score >= 25)
         {
             gameOverMessage.text = gameWon;

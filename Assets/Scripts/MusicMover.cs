@@ -35,8 +35,8 @@ public class MusicMover : MonoBehaviour
     {
         if(isCollected)
         {
-            thisSource.volume = initVol - 0.4f;
-            thisSource.spatialBlend = 0f;
+            thisSource.volume = initVol - 0.5f;
+            //thisSource.spatialBlend = 0f;
         }
 
         if(transform.position.y >10)
