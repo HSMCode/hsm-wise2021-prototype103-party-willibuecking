@@ -5,6 +5,9 @@ using UnityEngine;
 public class MusicMover : MonoBehaviour
 {
 
+    public Color lightColor;
+    public Light thisLight;
+
     private bool isCollected = false;
     private GameObject player;
     private Vector3 playerPos;
@@ -20,6 +23,8 @@ public class MusicMover : MonoBehaviour
     public int pointsA;
     public int pointsT;
 
+    public float lightSpeed;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,12 +32,15 @@ public class MusicMover : MonoBehaviour
         playerPos = GameObject.Find("PlayerBody").transform.position;
         thisSource = GetComponent<AudioSource>();
         initVol = thisSource.volume;
+        thisLight.color = lightColor;
 
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        thisLight.intensity = Mathf.PingPong(Time.time*lightSpeed, 1f);
         if(isCollected)
         {
             thisSource.volume = initVol - 0.5f;
