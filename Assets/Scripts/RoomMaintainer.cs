@@ -40,6 +40,8 @@ public class RoomMaintainer : MonoBehaviour
 
     private float timer;
 
+    public int tracksLeft = 6;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -62,12 +64,13 @@ public class RoomMaintainer : MonoBehaviour
         technoTracks.Add(GameObject.Find("T3"));
         technoTracks.Add(GameObject.Find("T4"));
         technoTracks.Add(GameObject.Find("T5"));
+
+        //Debug.Log(tracksLeft);
     }
 
     // Update is called once per frame
     void Update()
     {
-
         if(!gameStarted)
         {
             PreGame();

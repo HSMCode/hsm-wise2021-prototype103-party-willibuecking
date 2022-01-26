@@ -73,6 +73,8 @@ public class RoomController : MonoBehaviour
     {
         if(other.tag == "Player" && !thisRoomEntered)
         {
+            //Debug.Log(roomMaintainerScript.tracksLeft);
+            roomMaintainerScript.tracksLeft -= 1;
             thisRoomEntered = true;
         }
 
@@ -105,7 +107,7 @@ public class RoomController : MonoBehaviour
                 buildingRooms.Add(roomMaintainerScript.musicRoomT);
             }
 
-            Invoke("BuildRooms", 0f);
+            Invoke("BuildRooms", 0.3f);
             buildFlag = true;
         }
     }

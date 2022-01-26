@@ -1763,6 +1763,7 @@ MonoBehaviour:
   timeText: {fileID: 23419125}
   roomsVisited: {fileID: 1460820686}
   roomCount: 0
+  tracksLeft: 6
 --- !u!114 &1528737174
 MonoBehaviour:
   m_ObjectHideFlags: 0
