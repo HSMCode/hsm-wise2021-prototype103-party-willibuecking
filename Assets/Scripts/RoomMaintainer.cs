@@ -29,8 +29,8 @@ public class RoomMaintainer : MonoBehaviour
 
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI gameOverMessage;
-    public TextMeshProUGUI timeText;
-    public TextMeshProUGUI roomsVisited;
+    //public TextMeshProUGUI timeText;
+    //public TextMeshProUGUI roomsVisited;
 
     public int roomCount;
 
@@ -50,7 +50,7 @@ public class RoomMaintainer : MonoBehaviour
         gameWon = "Nice Set!\n I´ll recommend you to my friends, you´ll be drowning in exposure by next week.";
         gameMedium = "Meh, I´ve heard better but it´s not complete rubbish I guess.";
 
-        introPanel.SetActive(true);
+        introPanel.SetActive(false);
         outroPanel.SetActive(false);
 
         ambienceTracks.Add(GameObject.Find("A1"));
@@ -71,16 +71,7 @@ public class RoomMaintainer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!gameStarted)
-        {
-            PreGame();
-        }
-        if(Input.GetKeyDown(KeyCode.S))
-        {
-            gameStarted = true;
-            introPanel.SetActive(false);
-            Time.timeScale = 1f;
-        }
+
         if(ambienceTracks.Count == 0)
         {
             aListEmpty = true;
@@ -105,9 +96,9 @@ public class RoomMaintainer : MonoBehaviour
     void GameOver()
     {
         outroPanel.SetActive(true);
-        scoreText.text = "Your Score is " + score.ToString();
-        timeText.text = "It took you " + timer.ToString() + " seconds.";
-        roomsVisited.text = "You visited " + roomCount.ToString() + " rooms.";
+        scoreText.text = "You scored " + score.ToString() + "points";
+        //timeText.text = "It took you " + timer.ToString() + " seconds.";
+        //roomsVisited.text = "You visited " + roomCount.ToString() + " rooms.";
         if(score >= 25)
         {
             gameOverMessage.text = gameWon;
@@ -120,11 +111,6 @@ public class RoomMaintainer : MonoBehaviour
         {
             gameOverMessage.text = gameLost;
         }
-    }
-
-    void PreGame()
-    {
-        Time.timeScale = 0f;
     }
 
     IEnumerator GameOverTimer()
