@@ -44,17 +44,18 @@ public class MusicMover : MonoBehaviour
         if(isCollected)
         {
             thisSource.volume = initVol - 0.5f;
+            //Debug.Log(thisSource.volume);
             //thisSource.spatialBlend = 0f;
         }
 
-        if(transform.position.y >10)
+/*         if(transform.position.y >10)
         {
             thisSource.volume = 0;
         }
         else
         {
             thisSource.volume = initVol;
-        }
+        } */
     }
 
     void OnTriggerEnter(Collider other)
@@ -62,12 +63,14 @@ public class MusicMover : MonoBehaviour
         if(other.tag == "Player" && firstEnter)
         {
             isCollected = true;
+            Debug.Log("is Collected");
             transform.parent = player.transform;
             firstEnter = false;
         }
         if(other.tag == "FinishRoom")
         {
             transform.parent = other.gameObject.transform;
+            transform.position = other.gameObject.transform.position;
         }
     }
 
