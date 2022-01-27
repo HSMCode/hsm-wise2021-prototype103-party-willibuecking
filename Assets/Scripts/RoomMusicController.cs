@@ -19,8 +19,8 @@ public class RoomMusicController : MonoBehaviour
         roomMaintainerScript = sceneMaster.GetComponent<RoomMaintainer>();
 
         tracknumber = roomMaintainerScript.tracksLeft - 1;
-        Debug.Log(tracknumber);
-        Debug.Log(roomMaintainerScript.tracksLeft);
+        //Debug.Log(tracknumber);
+        //Debug.Log(roomMaintainerScript.tracksLeft);
 
         if(ambient && !roomMaintainerScript.aListEmpty && tracknumber >= 0)
         {

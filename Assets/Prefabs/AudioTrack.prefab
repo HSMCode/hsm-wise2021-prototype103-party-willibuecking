@@ -54,10 +54,10 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 0
-  MinDistance: 6
-  MaxDistance: 9.5
+  MinDistance: 6.5
+  MaxDistance: 7.7
   Pan2D: 0
-  rolloffMode: 2
+  rolloffMode: 1
   BypassEffects: 1
   BypassListenerEffects: 1
   BypassReverbZones: 1
@@ -65,22 +65,22 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0.45715648
-      value: 1.0074844
-      inSlope: -0.4270851
-      outSlope: -0.4270851
+      time: 0.84415585
+      value: 1
+      inSlope: -1.1850891
+      outSlope: -1.1850891
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.85973465
+      outWeight: 0
     - serializedVersion: 3
       time: 1
-      value: 0.022445679
-      inSlope: -0.31366268
-      outSlope: -0.31366268
+      value: 0
+      inSlope: -0.844492
+      outSlope: -0.844492
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.43949807
+      inWeight: 0
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -146,6 +146,7 @@ MonoBehaviour:
   thisLight: {fileID: 7116359515356823729}
   pointsA: 0
   pointsT: 0
+  lightSpeed: 0
 --- !u!65 &1376997218495887771
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -197,7 +198,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7647697260671926622}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
